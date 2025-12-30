@@ -1,0 +1,19 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background -->
+    <rect width="64" height="64" rx="14" fill="#F8F3EA"/>
+    
+    <!-- F Letter - Red (Brand Red) with rounded style -->
+    <!-- Vertical stem -->
+    <rect x="14" y="14" width="7" height="36" rx="3.5" fill="#D92332"/>
+    <!-- Top horizontal bar -->
+    <rect x="14" y="14" width="26" height="7" rx="3.5" fill="#D92332"/>
+    <!-- Middle horizontal bar -->
+    <rect x="14" y="27" width="20" height="7" rx="3.5" fill="#D92332"/>
+    
+    <!-- L Letter - Navy (Brand Navy) with rounded style -->
+    <!-- Vertical stem -->
+    <rect x="40" y="14" width="7" height="36" rx="3.5" fill="#0E1B4D"/>
+    <!-- Bottom horizontal bar -->
+    <rect x="40" y="43.5" width="18" height="7" rx="3.5" fill="#0E1B4D"/>
+</svg>
+

@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+@theme {
+    /* Brand Colors */
+    --color-brand-red: #D92332;
+    --color-brand-navy: #0E1B4D;
+    --color-brand-cream: #F8F3EA;
+    --color-brand-DEFAULT: #D92332;
+    --color-brand-dark: #A81B26;
+    --color-brand-light: #FF4D5A;
+
+    /* Surface Colors */
+    --color-surface-50: #F8F3EA;
+    --color-surface-100: #EAE5DC;
+
+    /* Font Families */
+    --font-jakarta: var(--font-jakarta), sans-serif;
+    --font-inter: var(--font-inter), sans-serif;
+    --font-varela-round: var(--font-varela-round), sans-serif;
+    --font-poppins: var(--font-poppins), sans-serif;
+
+    /* Animation */
+    --animate-float: float 6s ease-in-out infinite;
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-20px);
+        }
+    }
+
+    @keyframes flow {
+        0% {
+            background-position: -200% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
+    }
+
+    @keyframes glow {
+
+        0%,
+        100% {
+            opacity: 0.3;
+            box-shadow: 0 0 20px rgba(217, 35, 50, 0.2);
+        }
+
+        50% {
+            opacity: 0.6;
+            box-shadow: 0 0 40px rgba(217, 35, 50, 0.4), 0 0 20px rgba(14, 27, 77, 0.3);
+        }
+    }
+}
+
+:root {
+    --background: #F8F3EA;
+    /* Light creamy background matching screenshot */
+    --foreground: #0E1B4D;
+    /* Navy text color */
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #F8F3EA;
+        --foreground: #0E1B4D;
+    }
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+}
+
+.glass-nav {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom: 1px solid rgba(14, 27, 77, 0.1) !important;
+    box-shadow: 0 8px 32px rgba(14, 27, 77, 0.08) !important;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #FFF 0%, #D92332 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.btn-gradient {
+    background: linear-gradient(135deg, #0E1B4D 0%, #D92332 100%);
+}
