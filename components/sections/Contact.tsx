@@ -3,10 +3,11 @@
 import { Container } from "../ui/Container";
 import { Section } from "../ui/Section";
 import { Button } from "../ui/Button";
-import { useState } from "react";
+import { FormInput } from "../ui/FormInput";
+import { useState, useCallback, memo } from "react";
 import { motion } from "framer-motion";
 
-export function Contact() {
+function ContactForm() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -14,20 +15,81 @@ export function Contact() {
         message: "",
     });
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData({
-            ...formData,
+    const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData((prev) => ({
+            ...prev,
             [e.target.name]: e.target.value,
-        });
-    };
+        }));
+    }, []);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
         // Handle form submission here
         console.log("Form submitted:", formData);
         // You can add your form submission logic here
-    };
+    }, [formData]);
 
+    return (
+        <form onSubmit={handleSubmit} className="space-y-6">
+            <FormInput
+                id="name"
+                name="name"
+                type="text"
+                label="Your Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Your Name"
+            />
+
+            <FormInput
+                id="email"
+                name="email"
+                type="email"
+                label="Your Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Your Email"
+            />
+
+            <FormInput
+                id="phone"
+                name="phone"
+                type="tel"
+                label="Your Phone Number"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                placeholder="Your phone number"
+            />
+
+            <FormInput
+                id="message"
+                name="message"
+                label="What about? Why are you contacting?"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                isTextarea
+                rows={5}
+                placeholder="Tell us about your project and why you're reaching out..."
+            />
+
+            <div className="pt-4">
+                <Button
+                    type="submit"
+                    className="w-full md:w-auto"
+                    withArrow
+                >
+                    Send Message
+                </Button>
+            </div>
+        </form>
+    );
+}
+
+export const Contact = memo(function Contact() {
     return (
         <Section id="contact" className="bg-white relative overflow-hidden">
             {/* Partition at top using Hero section background color */}
@@ -39,7 +101,7 @@ export function Contact() {
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
                     className="max-w-2xl mx-auto"
                 >
@@ -47,89 +109,9 @@ export function Contact() {
                         Ready To Get Started?
                     </h2>
 
-                    <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Name Field */}
-                        <div>
-                            <label htmlFor="name" className="block text-sm font-semibold text-brand-navy mb-2">
-                                Your Name <span className="text-brand-red">*</span>
-                            </label>
-                            <input
-                                type="text"
-                                id="name"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                required
-                                placeholder="Your Name"
-                                className="w-full px-4 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-brand-navy placeholder:text-brand-navy/40"
-                            />
-                        </div>
-
-                        {/* Email Field */}
-                        <div>
-                            <label htmlFor="email" className="block text-sm font-semibold text-brand-navy mb-2">
-                                Your Email <span className="text-brand-red">*</span>
-                            </label>
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                required
-                                placeholder="Your Email"
-                                className="w-full px-4 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-brand-navy placeholder:text-brand-navy/40"
-                            />
-                        </div>
-
-                        {/* Phone Number Field */}
-                        <div>
-                            <label htmlFor="phone" className="block text-sm font-semibold text-brand-navy mb-2">
-                                Your Phone Number <span className="text-brand-red">*</span>
-                            </label>
-                            <input
-                                type="tel"
-                                id="phone"
-                                name="phone"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                required
-                                placeholder="Your phone number"
-                                className="w-full px-4 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-brand-navy placeholder:text-brand-navy/40"
-                            />
-                        </div>
-
-                        {/* Message/Notes Field */}
-                        <div>
-                            <label htmlFor="message" className="block text-sm font-semibold text-brand-navy mb-2">
-                                What about? Why are you contacting? <span className="text-brand-red">*</span>
-                            </label>
-                            <textarea
-                                id="message"
-                                name="message"
-                                value={formData.message}
-                                onChange={handleChange}
-                                required
-                                rows={5}
-                                placeholder="Tell us about your project and why you're reaching out..."
-                                className="w-full px-4 py-3 rounded-xl border border-brand-navy/10 bg-white focus:outline-none focus:ring-2 focus:ring-brand-red/20 focus:border-brand-red transition-all text-brand-navy placeholder:text-brand-navy/40 resize-none"
-                            />
-                        </div>
-
-                        {/* Submit Button */}
-                        <div className="pt-4">
-                            <Button
-                                type="submit"
-                                className="w-full md:w-auto"
-                                withArrow
-                            >
-                                Send Message
-                            </Button>
-                        </div>
-                    </form>
+                    <ContactForm />
                 </motion.div>
             </Container>
         </Section>
     );
-}
-
+});

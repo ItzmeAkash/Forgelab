@@ -2,86 +2,127 @@
 
 import { Container } from "../ui/Container";
 import { Section } from "../ui/Section";
-import { Badge } from "../ui/Badge";
-import { Sparkles, Users, Zap, Award, Target, Headphones } from "lucide-react";
 import { motion } from "framer-motion";
+import { TrendingUp, Users, Lightbulb, ArrowRight } from "lucide-react";
+import { memo } from "react";
 
-const REASONS = [
+const HIGHLIGHTS = [
     {
-        title: "AI-Powered Innovation",
-        description: "We leverage cutting-edge AI technology to deliver intelligent solutions that automate processes, optimize workflows, and drive measurable business results.",
-        icon: Sparkles,
+        icon: TrendingUp,
+        title: "Boost Your Profits",
+        description: "We build AI solutions that directly impact your bottom line — automating tasks, reducing costs, and uncovering new revenue opportunities.",
     },
     {
-        title: "Expert Team",
-        description: "Our multidisciplinary team of designers, developers, and strategists bring years of experience to every project, ensuring exceptional quality.",
         icon: Users,
+        title: "Empower Your Team",
+        description: "AI isn't here to replace your people. We help your team work smarter, not harder — amplifying their skills and unlocking their true potential.",
     },
     {
-        title: "Fast & Agile Delivery",
-        description: "We work efficiently without compromising quality, delivering projects on time and within budget while maintaining the highest standards.",
-        icon: Zap,
-    },
-    {
-        title: "Proven Track Record",
-        description: "With a portfolio of successful projects across various industries, we have a track record of delivering results that exceed expectations.",
-        icon: Award,
-    },
-    {
-        title: "Custom Solutions",
-        description: "We don't believe in one-size-fits-all. Every solution is tailored to your unique business needs, goals, and challenges.",
-        icon: Target,
-    },
-    {
-        title: "Ongoing Support",
-        description: "Your success is our priority. We provide continuous support, updates, and optimization to ensure your solutions evolve with your business.",
-        icon: Headphones,
+        icon: Lightbulb,
+        title: "Your Idea, Powered by AI",
+        description: "Got a business challenge? We'll show you how AI can solve it. From concept to deployment, we turn your vision into intelligent solutions.",
     },
 ];
 
-export function Why() {
+export const Why = memo(function Why() {
     return (
-        <Section id="why" className="bg-white relative overflow-hidden">
-            {/* Partition at bottom using Hero section background color */}
-            <div className="absolute bottom-0 left-0 right-0 h-px bg-surface-50 z-0" />
-
+        <Section id="why" className="bg-linear-to-b from-white to-surface-50 relative overflow-hidden">
             <Container className="relative z-10">
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
-                    <div>
-                        <Badge className="mb-4 bg-red-50 text-brand-red border-red-100">
-                            Why Choose Us
-                        </Badge>
-                        <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-brand-navy">
-                            Why <span className="text-brand-red">Forgelabs?</span>
-                        </h2>
-                    </div>
-                    <p className="text-brand-navy/60 max-w-sm mt-4 md:mt-0 font-medium">
-                        We're not just another agency. We're your strategic partner in transforming ideas into digital success stories.
+                {/* Main Header */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="text-left mb-16"
+                >
+                    <span className="inline-block px-4 py-2 bg-brand-red/10 text-brand-red text-sm font-medium rounded-full mb-6">
+                        Why Forgelab
+                    </span>
+                    <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-brand-navy mb-6 leading-tight">
+                        AI That Works <span className="text-brand-red">For</span> Your Business,<br className="hidden md:block" />
+                        Not <span className="text-brand-red">Against</span> Your People
+                    </h2>
+                    <p className="text-lg md:text-xl text-surface-600 max-w-3xl leading-relaxed">
+                        We exist for one reason — to help businesses like yours harness the power of AI
+                        to grow, compete, and thrive. No hype, no buzzwords. Just real solutions that
+                        deliver real results.
                     </p>
-                </div>
+                </motion.div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {REASONS.map((reason, index) => (
+                {/* Mission Statement */}
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-surface-100 mb-12"
+                >
+                    <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                        {/* Left - Our Mission */}
+                        <div>
+                            <h3 className="text-2xl md:text-3xl font-bold text-brand-navy mb-4">
+                                Our Mission
+                            </h3>
+                            <p className="text-surface-600 text-lg leading-relaxed mb-6">
+                                Every business deserves access to AI — not just the tech giants. We're here to
+                                democratize artificial intelligence, making it accessible, practical, and
+                                profitable for businesses of all sizes.
+                            </p>
+                            <p className="text-surface-600 text-lg leading-relaxed">
+                                We don't just build AI — we build AI that <strong className="text-brand-navy">makes sense</strong> for
+                                your business. Whether you're looking to automate repetitive tasks, gain deeper
+                                insights from your data, or create entirely new customer experiences, we're
+                                your partner in making it happen.
+                            </p>
+                        </div>
+
+                        {/* Right - Key Stats/Promise */}
+                        <div className="bg-linear-to-br from-brand-navy to-brand-navy/90 rounded-2xl p-8 text-white">
+                            <h4 className="text-xl font-semibold mb-6 text-white/90">Our Promise to You</h4>
+                            <ul className="space-y-4">
+                                <li className="flex items-start gap-3">
+                                    <ArrowRight className="w-5 h-5 text-brand-red mt-1 shrink-0" />
+                                    <span className="text-white/90">AI solutions that actually increase your revenue</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <ArrowRight className="w-5 h-5 text-brand-red mt-1 shrink-0" />
+                                    <span className="text-white/90">Technology that empowers your team, not replaces them</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <ArrowRight className="w-5 h-5 text-brand-red mt-1 shrink-0" />
+                                    <span className="text-white/90">Clear ROI you can measure and track</span>
+                                </li>
+                                <li className="flex items-start gap-3">
+                                    <ArrowRight className="w-5 h-5 text-brand-red mt-1 shrink-0" />
+                                    <span className="text-white/90">Support every step of the way</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </motion.div>
+
+                {/* Three Key Highlights */}
+                <div className="grid md:grid-cols-3 gap-6">
+                    {HIGHLIGHTS.map((item, index) => (
                         <motion.div
-                            key={reason.title}
-                            className="p-8 rounded-3xl bg-[var(--color-surface-cream)] hover:bg-white hover:shadow-xl border border-brand-navy/10 transition-all duration-300 group cursor-pointer"
+                            key={item.title}
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: false }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                            className="bg-white rounded-2xl p-6 md:p-8 border border-surface-100 hover:border-brand-red/30 hover:shadow-lg transition-all duration-300"
                         >
-                            <div className="w-14 h-14 rounded-full bg-brand-red/10 flex items-center justify-center text-brand-red mb-6 group-hover:scale-110 transition-transform">
-                                <reason.icon className="w-7 h-7" />
+                            <div className="w-14 h-14 rounded-xl bg-brand-red/10 flex items-center justify-center mb-5">
+                                <item.icon className="w-7 h-7 text-brand-red" />
                             </div>
-                            <h3 className="text-2xl font-bold mb-3 text-brand-navy">{reason.title}</h3>
-                            <p className="text-brand-navy/60 text-sm leading-relaxed font-medium">
-                                {reason.description}
-                            </p>
+                            <h4 className="text-xl font-bold text-brand-navy mb-3">{item.title}</h4>
+                            <p className="text-surface-600 leading-relaxed">{item.description}</p>
                         </motion.div>
                     ))}
                 </div>
             </Container>
         </Section>
     );
-}
+});
 

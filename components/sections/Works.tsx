@@ -4,7 +4,7 @@ import { Container } from "../ui/Container";
 import { Section } from "../ui/Section";
 import { Badge } from "../ui/Badge";
 import { Button } from "../ui/Button";
-import Image from "next/image";
+import { memo, useMemo } from "react";
 
 // Placeholder project data
 const PROJECTS = [
@@ -25,7 +25,9 @@ const PROJECTS = [
     },
 ];
 
-export function Works() {
+export const Works = memo(function Works() {
+    const projectsList = useMemo(() => PROJECTS, []);
+
     return (
         <Section id="works" className="bg-surface-50">
             <Container>
@@ -37,15 +39,16 @@ export function Works() {
                 </div>
 
                 <div className="space-y-16 md:space-y-32">
-                    {PROJECTS.map((project, index) => (
-                        <div key={index} className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16 group`}>
+                    {projectsList.map((project, index) => (
+                        <div key={project.title} className={`flex flex-col ${index % 2 === 1 ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16 group`}>
                             {/* Project Image */}
-                            <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-2xl relative aspect-[4/3]">
-                                <div className="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 transition-opacity z-10 mix-blend-multiply transition-all duration-500" />
+                            <div className="w-full md:w-1/2 overflow-hidden rounded-3xl shadow-2xl relative aspect-4/3">
+                                <div className="absolute inset-0 bg-brand/20 opacity-0 group-hover:opacity-100 z-10 mix-blend-multiply transition-all duration-500" />
                                 <img
                                     src={project.image}
                                     alt={project.title}
                                     className="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-700"
+                                    loading="lazy"
                                 />
                             </div>
 
@@ -68,4 +71,4 @@ export function Works() {
             </Container>
         </Section>
     );
-}
+});
